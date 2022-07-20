@@ -1,0 +1,23 @@
+managed implementation in class zbp_i_testprod unique;
+//strict; //Comment this line in to enable strict mode. The strict mode is prerequisite to be future proof regarding syntax and to be able to release your BO.
+
+define behavior for ZI_TESTPROD //alias <alias_name>
+persistent table mara
+lock master
+{
+  create;
+  update;
+  delete;
+
+  field ( mandatory ) Product;
+
+  validation validateProduct on save { field Product; create; update; }
+
+  mapping for mara
+  {
+    Product = matnr;
+    ProductType = mtart;
+    ProductGroup = matkl;
+    BaseUnit = meins;
+  }
+}
